@@ -1,8 +1,11 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link class="m10" to="/conditionalRendering">条件渲染</router-link>
+      <router-link class="m10" to="/about">生命周期</router-link>
+      <router-link class="m10" to="/about">组件传值</router-link>
+      <router-link class="m10" to="/vModel">v-model</router-link>
+      <router-link class="m10" to="/other">其他</router-link>
     </div>
     <router-view />
   </div>
@@ -28,5 +31,43 @@
       color: #42b983;
     }
   }
+}
+
+.container {
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  text-align: center;
+}
+.title {
+  font-size: 18px;
+  font-weight: 800;
+  color: red;
+}
+.tl {
+  text-align: left;
+}
+.tr {
+  text-align: right;
+}
+.flex {
+  display: flex;
+}
+.flex1 {
+  flex: 1;
+}
+.p20 {
+  padding: 20px;
+}
+.m10 {
+  margin: 10px;
+}
+.m20 {
+  margin: 20px;
+}
+button {
+  margin: 0 20px;
 }
 </style>
