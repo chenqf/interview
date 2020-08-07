@@ -1,6 +1,5 @@
 <template>
-  <div class="container">
-    <p class="title">验证组件的v-model</p>
+  <cc-block title="验证组件的v-model">
     <div class="container">
       当前value:{{ value }}<br /><button @click="addValue">add value</button>
     </div>
@@ -9,7 +8,7 @@
         add value2
       </button>
     </div>
-  </div>
+  </cc-block>
 </template>
 <script>
 export default {
