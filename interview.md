@@ -255,7 +255,20 @@ computed:{
 }
 ```
 
+非`Prop`的`Attribute`被设定到组件上，会被添加到组件的根元素上，若原有根元素存在同名`Attribute`，则会被覆盖。
 
+对于`class`和`style`会有特殊处理，会有合并的操作。
+
+使用`inheritAttrs: false`禁用根元素继承非`Prop`的`Attribute`,但并不会影响`class`和`style`的根元素继承。
+
+```js
+Vue.component('my-component', {
+  inheritAttrs: false,
+  // ...
+})
+```
+
+可以使用$attrs获取非props的Attribute，其并不受inhertAttrs影响。
 
 ### 循环引用
 

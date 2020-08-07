@@ -2,8 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link class="m10" to="/conditionalRendering">条件渲染</router-link>
-      <router-link class="m10" to="/about">生命周期</router-link>
-      <router-link class="m10" to="/about">组件传值</router-link>
+      <router-link class="m10" to="/com">组件</router-link>
       <router-link class="m10" to="/vModel">v-model</router-link>
       <router-link class="m10" to="/other">其他</router-link>
     </div>

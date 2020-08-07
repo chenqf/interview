@@ -24,6 +24,11 @@ const routes = [
     path: "/vModel",
     name: "vModel",
     component: () => import("../views/v_model/index.vue")
+  },
+  {
+    path: "/com",
+    name: "com",
+    component: () => import("../views/com/index.vue")
   }
 ];
 
