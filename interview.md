@@ -257,6 +257,8 @@ computed:{
 
 非`Prop`的`Attribute`被设定到组件上，会被添加到组件的根元素上，若原有根元素存在同名`Attribute`，则会被覆盖。
 
+已注册的`Prop`的`Attribute`是不会被设定到组件上。
+
 对于`class`和`style`会有特殊处理，会有合并的操作。
 
 使用`inheritAttrs: false`禁用根元素继承非`Prop`的`Attribute`,但并不会影响`class`和`style`的根元素继承。
@@ -268,7 +270,9 @@ Vue.component('my-component', {
 })
 ```
 
-可以使用$attrs获取非props的Attribute，其并不受inhertAttrs影响。
+可以使用`$attrs`获取非`props`的`Attribute`，其并不受`inhertAttrs`影响。
+
+`$attrs`中不会存在被注册为`Prop`的`Attribute`，也不会存在`class`和`style`。
 
 ### 循环引用
 
