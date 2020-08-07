@@ -274,11 +274,29 @@ Vue.component('my-component', {
 
 `$attrs`中不会存在被注册为`Prop`的`Attribute`，也不会存在`class`和`style`。
 
-### 循环引用
+### 绑定原生事件
 
-TODO
+可以使用.native修饰符，直接在组件的根元素上监听一个原生事件。
 
+```html
+<com @click.native="nativeEvent"></com>
+```
 
+也可以使用`$lisenters`获取绑定在组件上的所有监听器。
+
+需要注意的是，使用`.native`修饰符后的事件，不会出现在`$listeners`中。
+
+### 双向绑定
+
+很多情况下，我们需要对一个prop进行双向绑定，我们可以使用`.sync`操作符来模拟。
+
+```html
+<com :title.sync="currentTitle"></com>
+<!-- 等价于 -->
+<com :title="currentTitle" @upddate:title="currentTitle = $event"></com>
+```
+
+实际上也是相当于语法糖，还是要在子组件内，手动的去调用对应的更新事件。
 
 ### v-model
 
@@ -292,7 +310,7 @@ TODO
   v-on:input="searchText = $event"
 ></com>
 ```
-所以为了让它正常工作，需要在组件内，接收value属性，并找到时机触发input事件
+所以为了让它正常工作，需要在组件内，接收`value`属性，并找到时机触发`input`事件
 
 ```js
 {
@@ -305,11 +323,34 @@ TODO
 }
 ```
 
+也可以使用`model`选项，来设定`v-model`所使用的`prop`和`eventName`。
+
+```js
+model: {
+  prop: 'otherValue',
+  event: 'otherEventName'
+},
+```
+
+需要注意的是，通过`model`选项重新设置的`v-model`所使用的`prop`，依然需要在`props`中进行注册。
+
+
+
+
+
+
+
+
+
 ### 插槽
 
 TODO
 
 ### 动态和异步组件
+
+TODO
+
+### 循环引用
 
 TODO
 
