@@ -4,6 +4,7 @@
       <router-link class="m10" to="/conditionalRendering">条件渲染</router-link>
       <router-link class="m10" to="/com">组件</router-link>
       <router-link class="m10" to="/vModel">v-model</router-link>
+      <router-link class="m10" to="/forceUpdate">forceUpdate</router-link>
       <router-link class="m10" to="/other">其他</router-link>
     </div>
     <router-view />

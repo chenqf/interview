@@ -6,6 +6,11 @@
     <c5 @demo-test="demo1" @demo-test1="demo2" @click.native="demo3"></c5>
     <c6 :title-demo.sync="title"></c6>
     当前title:{{ title }}
+    <cc-block title="循环相互引用">
+      <c7 :title="item.title" :list="item.list"></c7>
+    </cc-block>
+    <c9 :parentNum="num"></c9>
+    <button @click="addNum">addNum</button>
     <c1 :obj="obj"></c1>
     <br />
     <button @click="changeObj">change obj</button>
@@ -19,11 +24,28 @@ import c3 from "./components/c3";
 import c4 from "./components/c4";
 import c5 from "./components/c5";
 import c6 from "./components/c6";
+import c7 from "./components/c7";
+import c9 from "./components/c9";
 export default {
   data() {
     return {
       obj: [],
-      title: 0
+      title: 0,
+      item: {
+        title: "1",
+        list: [
+          {
+            title: 2,
+            list: [
+              {
+                title: 3,
+                list: [{ title: 4 }]
+              }
+            ]
+          }
+        ]
+      },
+      num: 0
     };
   },
   methods: {
@@ -32,6 +54,10 @@ export default {
     },
     nativeEvent() {
       alert("native event");
+    },
+    addNum() {
+      this.num++;
+      console.log(this.num);
     },
     demo1() {},
     demo2() {},
@@ -45,7 +71,9 @@ export default {
     c3,
     c4,
     c5,
-    c6
+    c6,
+    c7,
+    c9
   }
 };
 </script>
