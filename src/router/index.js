@@ -34,6 +34,11 @@ const routes = [
     path: "/forceUpdate",
     name: "forceUpdate",
     component: () => import("../views/force_update/index.vue")
+  },
+  {
+    path: "/life",
+    name: "life",
+    component: () => import("../views/life/index.vue")
   }
 ];
 

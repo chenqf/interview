@@ -5,6 +5,7 @@
       <router-link class="m10" to="/com">组件</router-link>
       <router-link class="m10" to="/vModel">v-model</router-link>
       <router-link class="m10" to="/forceUpdate">forceUpdate</router-link>
+      <router-link class="m10" to="/life">life</router-link>
       <router-link class="m10" to="/other">其他</router-link>
     </div>
     <router-view />

@@ -6,7 +6,7 @@
 
 从`性能`上说，没有任何框架可以比手动优化的DOM操作更快，因为框架的DOM操作需要应对任意可能产生的情况，它的实现必须是普适的，`虚拟DOM`也并不比原生操作DOM更快。
 
-**框架提供的是，在不需要手动优化的情况下，依然可以提供过得去性能。**
+> **框架提供的是，在不需要手动优化的情况下，依然可以提供过得去性能。**
 
 ### VS JQuery
 
@@ -63,11 +63,107 @@ import Vue$ from "vue/dist/vue.esm";
 
 ## 生命周期
 
-**不要使用`箭头函数`，使用`箭头函数`会导致`this`异常**
+**不要使用`箭头函数`，使用`箭头函数`会导致`this`异常**。
 
 ### beforeCreate
 
+实例被创建前调用，有this，但是数据相关和事件相关均未配置完成。
 
+### created
+
+实例创建完成后调用，数据相关和事件相关均以配置完成。
+
+computed相关内容也以注册完成，何时调用，取决于使用情况。
+
+> `beforeCreate`和`create`主要是和实例相关，并未涉及到`template`相关
+
+### created <---> beforeMount
+
+编译模板 --  生成  -- render函数
+
+### beforeMount
+
+组件挂载到dom之前，$el不可用。
+
+本钩子之后，执行render函数，生成VNode，将VNode转换为dom挂载至$el。
+
+**ssr不可用**
+
+## mounted
+
+组件已经挂载到dom中，$el可用。
+
+**ssr不可用**
+
+> 并不保证所有的子组件都被挂载完成
+>
+> 如果希望等到整个视图渲染完毕，需要在`mounted`内部使用 `vm.$nextTick`
+
+### beforeUpdate
+
+`data`和`props`已经更新，`dom`还未更新，`diff`还未发生。
+
+**ssr不可用**
+
+### updated
+
+dom更新已经完成，需要避免在此钩子内更新状态。
+
+**ssr不可用**
+
+> 并不保证所有的子组件也一起重绘完成
+>
+> 如果希望等到整个视图都重绘完成，需要在`updated`内部使用 `vm.$nextTick`
+
+### activated
+
+keep-alive组件被激活时调用
+
+### deactivated
+
+ keep-alive组件停用时被调用
+
+### beforeDestroy
+
+实例销毁之前调用，在此钩子内，实例完全依然可用。
+
+dom节点被移除，但vm.$el扔保留在内存中。
+
+### destroyed
+
+实例销毁后调用。钩子调用后，所有指令事件子实例，均被销毁解绑。
+
+
+
+> beforeDestroy  vs  destroyed 二者区别于关系，存疑问
+
+
+
+### 兄弟组件间切换
+
+原组件：A    |    新组件：B
+
++ B ----> beforeCreate ---> created ---> beforeMount
++ A ----> beforeDestroy ---> destroyed
++ B ----> mounted
+
+### 父子组件创建
+
+父组件：P    |    子组件：C
+
++ P ---->  beforeCreate ---> created --->  beforeMount
++ C ---->  beforeCreate ---> created --->  beforeMount --->  `mounted`
++ P ---->  `mounted`
+
+> 官方文档中提示：并不保证子组件的`mounted`在父组件`mounted`之前
+
+### 父子组件更新
+
+父组件：P    |    子组件：C
+
++ 仅父组件需要更新
++ 仅子组件需要更新
++ 父子组件均需要更新
 
 ## 实例属性
 
