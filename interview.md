@@ -137,8 +137,6 @@ dom节点被移除，但vm.$el扔保留在内存中。
 
 > beforeDestroy  vs  destroyed 二者区别于关系，存疑问
 
-
-
 ### 兄弟组件间切换
 
 原组件：A    |    新组件：B
@@ -162,8 +160,33 @@ dom节点被移除，但vm.$el扔保留在内存中。
 父组件：P    |    子组件：C
 
 + 仅父组件需要更新
+  + P ----> beforeUpdate ---> updated
 + 仅子组件需要更新
+  + 数据来源于自身的data
+    + C ----> beforeUpdate ---> updated
+  + 数据来源于自身的props
+    + P ----> beforeUpdate
+    + C ----> beforeUpdate ---> updated
+    + P ----> updated
 + 父子组件均需要更新
+  + P ----> beforeUpdate
+  + C ----> beforeUpdate ---> updated
+  + P ----> updated
+
+>  官方文档中提示：并不保证子组件的`updated`在父组件`updated`之前
+
+### 父子组件销毁
+
+父组件：P    |    子组件：C
+
++ 仅销毁子组件
+  + P ----> beforeUpdate
+  + C ----> beforeDestroy ---> destroyed
+  + P ----> updated
++ 父子组件均销毁
+  + P ----> beforeDestroy
+  + C ----> beforeDestroy ---> destroyed
+  + P ----> destroyed
 
 ## 实例属性
 
@@ -485,6 +508,56 @@ vm.$forceUpdate();
 + $el   根DOM元素
 + $children   直接子组件（不保证顺序）
 + $refs    所有注册过ref的DOM或组件实例
+
+## 组件间传值
+
+### Event Bus
+
+适用范围：小项目、简单项目，兄弟组件间通信
+
+需要注意的是，当监听后，需要寻找时机解绑，防止监听事件不销毁。
+
+如果只是传一次值，在绑定监听的时候，使用`$once`
+
+如果需要多次实时传递值，需要在组件的beforeDestroy钩子中解绑`$off`
+
+### props & $emit
+
+适用范围：简单父子组件，嵌套层级不深
+
+推荐使用`.sync`操作符，简化操作
+
+### $attrs & $listeners
+
+**传递属性：**
+
+```html
+<com v-bind="$attrs"></com>
+```
+
+通过此种方式，将当前组件`未注册的props`(class和style除外)，但上级传递过来的属性传递给下级组件。
+
+> 若在使用下级组件时，传入了与$attrs中`同名属性`，则传递的$attrs中的内容会被`覆盖`。
+
+**传递事件：**
+
+```html
+<com v-on="$listeners"></com>
+```
+
+通过此种方式，将当前组件所接受到的事件，传递给子组件。无法传递父组件通过`.native`修饰符传递的事件。
+
+>  需要注意的是：若同时传递了同名事件，子组件会一起接收，作为`数组处理`！！
+
+### provide & inject
+
+项目中不建议使用，增加耦合，重构困难。
+
+适用于开发高阶插件、组件库的情况。
+
+是否可响应式的？
+
+### vuex
 
 ## Vue.use
 

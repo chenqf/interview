@@ -1,9 +1,11 @@
 <template>
   <cc-block title="验证生命周期">
-    <c1 v-if="hasC1" :num="num" :list="list"></c1>
-    <button @click="update">修改parent的数据</button>
-    <p>验证计算属性的配置时间:{{ computeNum }}</p>
-    <p>验证模板的执行时间{{ testFn() }}</p>
+    <c1 v-if="hasC1" :num="childData"></c1>
+    <button @click="updateParent">修改parent的数据</button>
+    <button @click="updateChild">修改child的数据</button>
+    <button @click="updateAll">修改parent & child的数据</button>
+    <button @click="changeC1">是否有子组件</button>
+    {{ parentData }}
   </cc-block>
 </template>
 <script>
@@ -12,16 +14,11 @@ export default {
   data() {
     return {
       hasC1: true,
-      num: 1,
-      list: [1, 2]
+      parentData: 1,
+      childData: 2
     };
   },
-  computed: {
-    computeNum() {
-      //   console.group("Parent computed");
-      return this.num + this.num;
-    }
-  },
+
   beforeCreate() {
     console.group("Parent beforeCreate");
   },
@@ -41,18 +38,24 @@ export default {
     console.group("Parent updated");
   },
   beforeDestroy() {
-    console.log(this.$data);
-    debugger;
+    console.group("Parent beforeDestroy");
   },
   destroyed() {
-    console.log(this.$data);
-    debugger;
+    console.group("Parent destroyed");
   },
   methods: {
-    update() {
-      this.num++;
-      this.list = this.list.reverse();
+    changeC1() {
       this.hasC1 = !this.hasC1;
+    },
+    updateAll() {
+      this.parentData++;
+      this.childData++;
+    },
+    updateParent() {
+      this.parentData++;
+    },
+    updateChild() {
+      this.childData++;
     },
     testFn() {
       //   console.log("开始执行模板");

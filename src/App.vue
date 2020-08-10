@@ -5,7 +5,8 @@
       <router-link class="m10" to="/com">组件</router-link>
       <router-link class="m10" to="/vModel">v-model</router-link>
       <router-link class="m10" to="/forceUpdate">forceUpdate</router-link>
-      <router-link class="m10" to="/life">life</router-link>
+      <router-link class="m10" to="/life">声明周期</router-link>
+      <router-link class="m10" to="/pass">组件传值</router-link>
       <router-link class="m10" to="/other">其他</router-link>
     </div>
     <router-view />
@@ -70,5 +71,17 @@
 }
 button {
   margin: 0 20px;
+}
+.bg-grey {
+  background: grey;
+}
+.bg-blue {
+  background: #7c7cce;
+}
+.bg-red {
+  background: #cc4a4af2;
+}
+.bg-green {
+  background: #00805891;
 }
 </style>

@@ -39,6 +39,11 @@ const routes = [
     path: "/life",
     name: "life",
     component: () => import("../views/life/index.vue")
+  },
+  {
+    path: "/pass",
+    name: "pass",
+    component: () => import("../views/pass/index.vue")
   }
 ];
 
