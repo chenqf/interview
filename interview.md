@@ -555,9 +555,30 @@ vm.$forceUpdate();
 
 适用于开发高阶插件、组件库的情况。
 
-是否可响应式的？
+provide 传递的值，若是原始值，则必然不是可响应的。但若传递的值是可响应的对象，则依然是可响应的。
+
+**案例：**
+
+两个组件 `form` 和 `input`，在`form`组件上指定整个表单的大小，`input`组件中也会用到。但由于各种需求，可能出现`form`和`input`之间还有其他中间组件，导致`form`和`input`的亲子关系很远，此时可以使用`provide & inject` 在`form`中向下注入当前的基本信息。
 
 ### vuex
+
+**State**：store的唯一数据源
+
+**mapState**：获取多个状态，用于computed中
+
+**Getter**：store的计算属性
+
+**mapGetters**：用于映射成多个局部计算属性，用于computed中
+
+**Mutation**：`同步`更改状态，使用 `store.commit(type , payload)`
+
+**Action**：
+
+- 异步调用，其内调用Mutation，通过 store.dispatch 触发
+- mapActions 用于在组件中使用action
+
+**Module**：分割模块
 
 ## Vue.use
 

@@ -16,7 +16,6 @@ export default {
     this.$emit("demo-test2", "test2");
     this.$emit("demo-test3", "test3");
   },
-
   methods: {},
   components: {},
   watch: {}
