@@ -1,8 +1,13 @@
 <template>
   <div>
-    <c2 a="11" b="22" c="33" class="f"></c2>
-    <c3 a="11" b="22" c="33" class="f"></c3>
-    <c4 @click.native="nativeEvent"></c4>
+    <c2 ref="c2" a="11" b="22" c="33" class="f"></c2>
+    <c3 ref="c3" a="11" b="22" c="33" class="f"></c3>
+    <c4
+      ref="c4"
+      v-for="i in ['1', '2']"
+      :key="i"
+      @click.native="nativeEvent"
+    ></c4>
     <c5 @demo-test="demo1" @demo-test1="demo2" @click.native="demo3"></c5>
     <c6 :title-demo.sync="title"></c6>
     当前title:{{ title }}
@@ -15,6 +20,7 @@
     <br />
     <button @click="changeObj">change obj</button>
     <p>当前obj:{{ obj }}</p>
+    <span ref="span" v-for="i in ['3', '4']" :key="i"></span>
   </div>
 </template>
 <script>
@@ -47,6 +53,15 @@ export default {
       },
       num: 0
     };
+  },
+  created() {
+    console.log("create", this.$refs);
+  },
+  beforeMount() {
+    console.log("beforeMount", this.$refs);
+  },
+  mounted() {
+    console.log("mounted", this.$refs);
   },
   methods: {
     changeObj() {

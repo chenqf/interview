@@ -44,6 +44,16 @@ const routes = [
     path: "/pass",
     name: "pass",
     component: () => import("../views/pass/index.vue")
+  },
+  {
+    path: "/watcher",
+    name: "watcher",
+    component: () => import("../views/watcher/index.vue")
+  },
+  {
+    path: "/functional",
+    name: "functional",
+    component: () => import("../views/functional/index.vue")
   }
 ];
 

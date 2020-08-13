@@ -1,6 +1,8 @@
 <template>
   <cc-block title="验证生命周期">
-    <c1 v-if="hasC1" :num="childData"></c1>
+    <keep-alive>
+      <c1 v-if="hasC1" :num="childData"></c1>
+    </keep-alive>
     <button @click="updateParent">修改parent的数据</button>
     <button @click="updateChild">修改child的数据</button>
     <button @click="updateAll">修改parent & child的数据</button>

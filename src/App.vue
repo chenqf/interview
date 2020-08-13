@@ -7,6 +7,8 @@
       <router-link class="m10" to="/forceUpdate">forceUpdate</router-link>
       <router-link class="m10" to="/life">声明周期</router-link>
       <router-link class="m10" to="/pass">组件传值</router-link>
+      <router-link class="m10" to="/functional">functional</router-link>
+      <router-link class="m10" to="/watcher">watcher</router-link>
       <router-link class="m10" to="/other">其他</router-link>
     </div>
     <router-view />
@@ -68,6 +70,9 @@
 }
 .m20 {
   margin: 20px;
+}
+.mt20 {
+  margin-top: 20px;
 }
 button {
   margin: 0 20px;
