@@ -13,12 +13,12 @@
 
         <template #foo="slotProps">
           ##### foo #######<br />
-          {{ slotProps.obj.name }}<br />
+          {{ slotProps.obj.name }}<br /><c2></c2>
           ##### foo #######
         </template>
         <template #pool="slotProps">
           ##### pool #######<br />
-          {{ slotProps.obj.name }}<br />
+          {{ slotProps.obj.name }}<br /><c2></c2>
           ##### pool #######
         </template>
       </c1>
@@ -30,6 +30,7 @@
 import c1 from "./components/c1";
 import c2 from "./components/c2";
 export default {
+  name: "functional-example",
   data() {
     return {
       a: 1,
@@ -38,9 +39,8 @@ export default {
   },
   methods: {
     click() {
-      console.log("c1Ref", this.$refs.c1Ref);
-      console.log("fnRef", this.$refs.fnRef);
-      console.log("renderRef", this.$refs.renderRef);
+      console.log("refs", this.$refs);
+      console.log("refs", this.$refs.c1Ref.value);
     }
   },
   components: {

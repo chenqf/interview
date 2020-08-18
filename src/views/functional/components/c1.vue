@@ -1,28 +1,11 @@
 <script>
 import c3 from "./c3";
 
-const aa = {
-  render(h) {
-    return h(
-      "div",
-      { class: ["aaaa", "bbbb"], slot: "default" },
-      "我是内部的default com"
-    );
-  }
-};
-const bb = {
-  render(h) {
-    return h(
-      "div",
-      { class: ["ccccc", "ddddd"], slot: "foo" },
-      "我是内部的foo com"
-    );
-  }
-};
-
 export default {
+  //   name: "functional-c1",
   functional: true,
   render: function(h, content) {
+    const ref = content.data.ref;
     const $slots = content.slots();
     const slots = Object.keys($slots).reduce(
       (arr, key) => arr.concat($slots[key]),
@@ -30,7 +13,7 @@ export default {
     );
     return h(
       c3,
-      { class: "aaaa", ref: "fnRef", scopedSlots: content.scopedSlots },
+      { class: "aaaa", ref, scopedSlots: content.scopedSlots },
       slots
     );
   }
@@ -45,6 +28,12 @@ export default {
   //       { class: "aaaa", ref: "renderRef", scopedSlots: this.$scopedSlots },
   //       slots
   //     );
+  //   },
+  //   name: "render-c1",
+  //   data() {
+  //     return {
+  //       value: "render test"
+  //     };
   //   }
 };
 </script>

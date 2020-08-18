@@ -13,7 +13,12 @@
 </template>
 <script>
 export default {
-  name: "I-c3",
+  data() {
+    return {
+      value: "c3-value"
+    };
+  },
+  name: "c3",
   methods: {
     testEvent() {
       console.log("c3 fn");
