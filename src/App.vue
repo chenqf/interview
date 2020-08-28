@@ -9,6 +9,7 @@
       <router-link class="m10" to="/pass">组件传值</router-link>
       <router-link class="m10" to="/functional">functional</router-link>
       <router-link class="m10" to="/watcher">watcher</router-link>
+      <router-link class="m10" to="/element">element</router-link>
       <router-link class="m10" to="/other">其他</router-link>
     </div>
     <router-view />

@@ -663,6 +663,7 @@ provide 传递的值，若是原始值，则必然不是可响应的。但若传
 - 首字母大写
 - 权限
 - 只能输入数字
+- loading
 - ....
 
 ## 异步更新队列
@@ -961,7 +962,7 @@ UI测试：enzyme
 
 ## Element-ui
 
-
+PopupManager：全局遮罩才需要
 
 ## Vue.use
 
@@ -981,7 +982,13 @@ UI测试：enzyme
 
 ## 骨架屏
 
-## 单点登录
+## 单点登录 SSO
+
+https://zhuanlan.zhihu.com/p/50541175
+
+https://www.jianshu.com/p/7c852e294a76
+
+https://blog.csdn.net/clh604/article/details/20365967
 
 
 

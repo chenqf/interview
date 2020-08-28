@@ -54,6 +54,11 @@ const routes = [
     path: "/functional",
     name: "functional",
     component: () => import("../views/functional/index.vue")
+  },
+  {
+    path: "/element",
+    name: "element",
+    component: () => import("../views/element/index.vue")
   }
 ];
 
