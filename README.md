@@ -1,34 +1,50 @@
-# interview-vue
++ 区分v-if和v-show
+  + v-if：适用于不会重复变更的情况下，因为它每次都会销毁重建
+  + v-show：适用于重复变更的情况下，因为它只是显示隐藏
++ 能用computed就不要用watch
+  + computed 本身是惰性的，并且具有缓存
++ 避免同时使用v-for和v-if
+  + v-for的优先级高于v-if
++ 路由懒加载
+  + 提高首屏渲染速度
++ 销毁自定义的事件
+  + 要在beforeDestroy中销毁事件
++ 降低watcher
+  + 减少data中的属性数量
+  + 使用Object.freeze 冻结对象
++ 列表中一定使用key
+  + 实际项目中列表都很复杂
+  + 避免原地复用，快速找到对比的dom节点
++ 展示组件使用函数式组件
+  + 本身没有data，不存在data相关的watcher
+  + 本身是函数，不存在实例
++ 使用keep-alive
+  + 将经常切换显示的组件缓存
+  + 避免多次销毁创建的性能损失
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
++ 代码修改，通过原有的单元测试，可以得知之前的功能依然如常
++ 反向影响写的代码，是易于测试的，也就是设计优良的代码，强迫我们的代码是松耦合的。
++ 具有解释性，其他人通过查看测试用例，可以快速了解你的代码都做了什么
 
-### Run your unit tests
-```
-npm run test:unit
-```
 
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
